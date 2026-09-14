@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ni hao nigga">
+    <title>nigga</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+    <header>
+        <div class="logo">
+            <img src="img/branding.png " alt="kyosein">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">home</a></li>
+                <li><a href="about.html">about me</a></li>
+                <li><a href="works.html">my works</a></li>
+                <li><a href="contact.html">contact me</a></li>
+            </ul>
+            <canvas id="particle-canvas"></canvas>
+        </nav>
+    </header>    
+
+    <main>
+        <section id="portofolio">
+    <h2>Works</h2>
+    
+    <div class="carousel-container">
+        <div class="carousel-track" id="track">
+            <div class="carousel-slide">
+                <video src="vid/sunshineintherain.mp4" autoplay muted loop playsinline>
+            </div>
+
+
+            <div class="carousel-slide">
+                    <video src="vid/Kimi to Kuse.mp4" autoplay muted loop playsinline>
+            </div>
+
+            <div class="carousel-slide">
+                <video src="vid/Yuri Project 2.mp4" autoplay muted loop playsinline>
+            </div>
+
+        </div>
+
+        <button class="carousel-btn prev" id="btnPrev">&#10094;</button>
+        <button class="carousel-btn next" id="btnNext">&#10095;</button>
+    </div>
+</section>
+
+        <section id="tentang">
+            <h2>Tentang Saya</h2>
+            <p>
+                lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <h3>Keahlian (Skills):</h3>
+            <ul>
+                <li>HTML, CSS, JavaScript</li>
+                <li>Desain UI/UX</li>
+                <li>Pemecahan Masalah (Problem Solving)</li>
+            </ul>
+        </section>
+
+        <section id="portofolio">
+            <h2>lorem ipsum</h2>
+            <div class="grid-portofolio">
+                
+                <article class="proyek-item">
+
+                    <h3>Judul Proyek 1</h3>
+                    <p>Deskripsi singkat mengenai proyek 1 dan teknologi yang digunakan.</p>
+                    <a href="#">Lihat Proyek</a>
+                </article>
+
+                <article class="proyek-item">
+                    <h3>Judul Proyek 2</h3>
+                    <p>Deskripsi singkat mengenai proyek 2 dan teknologi yang digunakan.</p>
+                    <a href="#">Lihat Proyek</a>
+                </article>
+
+                <article class="proyek-item">
+                    <h3>Judul Proyek 3</h3>
+                    <p>Deskripsi singkat mengenai proyek 3 dan teknologi yang digunakan.</p>
+                    <a href="#">Lihat Proyek</a>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="kontak">
+            <h2>Hubungi Saya</h2>
+            <p>Tertarik untuk bekerja sama? Jangan ragu untuk mengirimkan pesan!</p>
+            
+            <form action="#" method="POST">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="pesan">Pesan:</label>
+                <textarea id="pesan" name="pesan" rows="5" required></textarea>
+
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </section>
+
+    </main>
+  </body>
+
+  <script src="script.js"></script>
+  
+</html>
