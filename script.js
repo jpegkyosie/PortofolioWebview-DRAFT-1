@@ -3,10 +3,10 @@ const ctx = canvas.getContext('2d');
 
 let particlesArray = [];
 let mouse = {
-    x: undefined,
-    y: undefined,
-    radius: 120
-}
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+    radius: 160
+};
 
 window.addEventListener('mousemove', function(event) {
     mouse.x = event.x;
@@ -14,8 +14,8 @@ window.addEventListener('mousemove', function(event) {
 });
 
 window.addEventListener('mouseout', function() {
-    mouse.x = undefined;
-    mouse.y = undefined;
+    mouse.x = window.innerWidth / 2;
+    mouse.y = window.innerHeight / 2;
 });
 
 function setCanvasSize() {
@@ -27,10 +27,10 @@ class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = (Math.random() - 0.5) * 1.5;
-        this.speedY = (Math.random() - 0.5) * 1.5;
-        this.density = (Math.random() * 20) + 1;
+        this.size = Math.random() * 2.4 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.9;
+        this.speedY = (Math.random() - 0.5) * 0.9;
+        this.density = (Math.random() * 18) + 6;
     }
 
     update() {
@@ -43,14 +43,14 @@ class Particle {
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < mouse.radius) {
             const forceDirectionX = dx / distance;
             const forceDirectionY = dy / distance;
             const force = (mouse.radius - distance) / mouse.radius;
             const directionX = forceDirectionX * force * this.density;
             const directionY = forceDirectionY * force * this.density;
-            
+
             this.x -= directionX;
             this.y -= directionY;
         }
@@ -59,29 +59,72 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)'; // Warna partikel
+        ctx.fillStyle = 'rgba(255,255,255,0.5)';
         ctx.fill();
+    }
+}
+
+function drawVignette() {
+    const centerX = mouse.x || canvas.width / 2;
+    const centerY = mouse.y || canvas.height / 2;
+    const radius = Math.max(canvas.width, canvas.height) * 0.9;
+
+    const gradient = ctx.createRadialGradient(centerX, centerY, 140, centerX, centerY, radius);
+    gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+    gradient.addColorStop(0.55, 'rgba(0, 0, 0, 0.08)');
+    gradient.addColorStop(1, 'rgba(0, 0, 0, 0.7)');
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function connectParticles() {
+    for (let i = 0; i < particlesArray.length; i++) {
+        for (let j = i; j < particlesArray.length; j++) {
+            const dx = particlesArray[i].x - particlesArray[j].x;
+            const dy = particlesArray[i].y - particlesArray[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 90) {
+                const opacity = 1 - distance / 90;
+                ctx.beginPath();
+                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                ctx.strokeStyle = `rgba(255,255,255,${opacity * 0.18})`;
+                ctx.lineWidth = 0.8;
+                ctx.stroke();
+            }
+        }
     }
 }
 
 function init() {
     setCanvasSize();
     particlesArray = [];
-    let numberOfParticles = (canvas.width * canvas.height) / 4000; 
-    
+    const numberOfParticles = (canvas.width * canvas.height) / 1700;
+
     for (let i = 0; i < numberOfParticles; i++) {
         particlesArray.push(new Particle());
     }
 }
 
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].update();
         particlesArray[i].draw();
     }
-    requestAnimationFrame(animate); 
+
+    connectParticles();
+    drawVignette();
+    requestAnimationFrame(animate);
 }
+
+window.addEventListener('resize', init);
+
+init();
+animate();
 
 const track = document.getElementById('track');
 const btnPrev = document.getElementById('btnPrev');
@@ -92,26 +135,40 @@ const videos = document.querySelectorAll('.carousel-slide video');
 let currentIndex = 0;
 
 function updateCarousel() {
-    // Geser trek sebesar (Lebar 1 Slide x Index Saat Ini)
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
-    // Jeda seluruh video di semua slide
     videos.forEach(video => {
         video.pause();
     });
-
-    // Jalankan (play) otomatis hanya video pada slide yang sedang aktif di layar
     videos[currentIndex].play();
 }
 
 btnNext.addEventListener('click', () => {
-    // Jika belum di slide terakhir, maju. Jika sudah, kembali ke awal
     currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
     updateCarousel();
 });
 
 btnPrev.addEventListener('click', () => {
-    // Jika belum di slide pertama, mundur. Jika sudah, pergi ke akhir
     currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
     updateCarousel();
 });
+
+let currentIndexSertifikat = 0;
+
+        function geserSertifikat(arah) {
+            const wrapper = document.getElementById('sertifikatWrapper');
+            // Menghitung jumlah slide di dalam sertifikatWrapper saja
+            const totalSlide = wrapper.querySelectorAll('.slide-item').length;
+
+            currentIndexSertifikat += arah;
+
+            // Logika Looping: Kembali ke awal jika kelewatan batas
+            if (currentIndexSertifikat >= totalSlide) {
+                currentIndexSertifikat = 0;
+            } else if (currentIndexSertifikat < 0) {
+                currentIndexSertifikat = totalSlide - 1;
+            }
+
+            // Eksekusi animasi pergeseran
+            const jarakGeser = -(currentIndexSertifikat * 100);
+            wrapper.style.transform = `translateX(${jarakGeser}%)`;
+        }

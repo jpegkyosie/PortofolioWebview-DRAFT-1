@@ -20,35 +20,70 @@
                 <li><a href="works.html">my works</a></li>
                 <li><a href="contact.html">contact me</a></li>
             </ul>
-            <canvas id="particle-canvas"></canvas>
         </nav>
     </header>    
 
     <main>
         <section id="portofolio">
-    <h2>Works</h2>
+            <h2>Works</h2>
+            
+            <div class="carousel-container">
+                <div class="carousel-track" id="track">
+                    <div class="carousel-slide">
+                        <video src="vid/sunshineintherain.mp4" autoplay muted loop playsinline>
+                    </div>
+
+                    <div class="carousel-slide">
+                            <video src="vid/Kimi to Kuse.mp4" autoplay muted loop playsinline>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <video src="vid/Yuri Project 2.mp4" autoplay muted loop playsinline>
+                    </div>
+
+                </div>
+
+                <button class="carousel-btn prev" id="btnPrev">&#10094;</button>
+                <button class="carousel-btn next" id="btnNext">&#10095;</button>
+            </div>
+        </section>
+
+        <section id="sertifikat" class="sertifikat-section">
+            <h2>Sertifikat & Penghargaan</h2>
     
-    <div class="carousel-container">
-        <div class="carousel-track" id="track">
-            <div class="carousel-slide">
-                <video src="vid/sunshineintherain.mp4" autoplay muted loop playsinline>
+            <div class="slider-container">
+                <div class="slider-wrapper" id="sertifikatWrapper">
+
+                    <div class="slide-item">
+                        <img src="sert/1.png" alt="Sertifikat Landscape">
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="sert/2.png" alt="Sertifikat Portrait">
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="sert/3.png" alt="Sertifikat Kotak">
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="sert/4.png" alt="Sertifikat Landscape">
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="sert/5.png" alt="Sertifikat Landscape">
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="sert/6.png" alt="Sertifikat Landscape">
+                    </div>
+
             </div>
 
-
-            <div class="carousel-slide">
-                    <video src="vid/Kimi to Kuse.mp4" autoplay muted loop playsinline>
-            </div>
-
-            <div class="carousel-slide">
-                <video src="vid/Yuri Project 2.mp4" autoplay muted loop playsinline>
-            </div>
-
+            <button class="btn-nav btn-prev" onclick="geserSertifikat(-1)">&#10094;</button>
+            <button class="btn-nav btn-next" onclick="geserSertifikat(1)">&#10095;</button>
         </div>
-
-        <button class="carousel-btn prev" id="btnPrev">&#10094;</button>
-        <button class="carousel-btn next" id="btnNext">&#10095;</button>
-    </div>
-</section>
+    </section>
 
         <section id="tentang">
             <h2>Tentang Saya</h2>
