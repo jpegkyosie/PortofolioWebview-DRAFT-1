@@ -142,20 +142,23 @@ function updateCarousel() {
     videos[currentIndex].play();
 }
 
-btnNext.addEventListener('click', () => {
-    currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-    updateCarousel();
-});
+if (track && btnPrev && btnNext && slides.length > 0) {
+    btnNext.addEventListener('click', () => {
+        currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+    });
 
-btnPrev.addEventListener('click', () => {
-    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-    updateCarousel();
-});
+    btnPrev.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+        updateCarousel();
+    });
+}
 
 let currentIndexSertifikat = 0;
 
         function geserSertifikat(arah) {
             const wrapper = document.getElementById('sertifikatWrapper');
+            if (!wrapper) return;
             // Menghitung jumlah slide di dalam sertifikatWrapper saja
             const totalSlide = wrapper.querySelectorAll('.slide-item').length;
 
