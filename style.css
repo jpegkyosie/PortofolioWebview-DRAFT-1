@@ -13,7 +13,7 @@ body {
 }
 
 main {
-    width: min(100%, 1280px);
+    width: min(calc(100% - 48px), 1240px);
     margin: 0 auto;
     padding-bottom: 60px;
 }
@@ -705,4 +705,220 @@ header nav ul li a:hover {
     text-align: center;
     padding-top: 40px;
     padding-bottom: 20px;
+}
+
+.contact-main {
+    width: min(calc(100% - 48px), 1240px);
+    margin: 0 auto;
+    padding: 58px 0 80px;
+}
+
+.profile-shell,
+.contact-panel {
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: none;
+}
+
+.profile-shell {
+    overflow: hidden;
+}
+
+.profile-cover {
+    height: 190px;
+    background: linear-gradient(120deg, #505050 0%, #272727 48%, #111111 100%);
+    position: relative;
+}
+
+.profile-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(125deg, transparent 0 34px, rgba(255, 255, 255, 0.06) 35px 36px);
+    opacity: 0.55;
+}
+
+.profile-content {
+    position: relative;
+    padding: 0 42px 36px;
+}
+
+.profile-avatar {
+    display: grid;
+    width: 126px;
+    height: 126px;
+    place-items: center;
+    margin-top: -64px;
+    border: 6px solid transparent;
+    border-radius: 50%;
+    background: transparent;
+    overflow: hidden;
+}
+
+.profile-avatar img {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+}
+
+.profile-intro {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.profile-heading h1 {
+    margin: 2px 0 6px;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.profile-role {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.profile-location {
+    margin-top: 6px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.9rem;
+}
+
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    gap: 10px;
+}
+
+.action-button-primary {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #111111;
+}
+
+.action-button-primary:hover {
+    background: #d9d9d9;
+    color: #111111;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.contact-panel {
+    padding: 30px;
+}
+
+.contact-panel h2 {
+    margin: 4px 0 16px;
+    font-size: clamp(1.6rem, 3vw, 2.35rem);
+    line-height: 1.1;
+    text-align: left;
+}
+
+.contact-panel p:not(.eyebrow) + p {
+    margin-top: 16px;
+}
+
+.contact-details {
+    background: transparent;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid transparent;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.contact-link:hover {
+    color: #cfcfcf;
+    transform: translateX(4px);
+}
+
+.contact-link-static:hover {
+    transform: none;
+    color: #ffffff;
+}
+
+.contact-icon {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    place-items: center;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.contact-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.contact-link strong,
+.contact-link small {
+    display: block;
+}
+
+.contact-link small {
+    margin-top: 2px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 700px) {
+    main {
+        width: min(calc(100% - 28px), 1240px);
+    }
+
+    .contact-main {
+        width: min(calc(100% - 28px), 1240px);
+        padding-top: 34px;
+    }
+
+    .profile-cover {
+        height: 135px;
+    }
+
+    .profile-content {
+        padding: 0 20px 26px;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+    }
+
+    .profile-intro {
+        display: block;
+        margin-top: 16px;
+    }
+
+    .profile-actions {
+        justify-content: start;
+        margin-top: 22px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-panel {
+        padding: 24px 20px;
+    }
 }
