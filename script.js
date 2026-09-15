@@ -159,12 +159,10 @@ let currentIndexSertifikat = 0;
         function geserSertifikat(arah) {
             const wrapper = document.getElementById('sertifikatWrapper');
             if (!wrapper) return;
-            // Menghitung jumlah slide di dalam sertifikatWrapper saja
+   
             const totalSlide = wrapper.querySelectorAll('.slide-item').length;
 
             currentIndexSertifikat += arah;
-
-            // Logika Looping: Kembali ke awal jika kelewatan batas
             if (currentIndexSertifikat >= totalSlide) {
                 currentIndexSertifikat = 0;
             } else if (currentIndexSertifikat < 0) {
