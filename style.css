@@ -257,7 +257,7 @@ header nav ul li a:hover {
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.062);
 }
 
 .slider-wrapper {
@@ -272,7 +272,7 @@ header nav ul li a:hover {
     align-items: center;
     justify-content: center;
     padding: 30px 50px;
-    background: #000;
+    background: rgba(0, 0, 0, 0.096);
     aspect-ratio: 16 / 9;
     overflow: hidden;
 }
@@ -316,30 +316,26 @@ header nav ul li a:hover {
             margin-top: 5px;
         }
 
-        /* ================= TOMBOL NAVIGASI ================= */
 .btn-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.9);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
     border: none;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
     cursor: pointer;
-    font-size: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.45);
-    transition: all 0.2s ease;
+    padding: 15px 20px;
+    font-size: 45px;
+    transition: all 0.3s ease;
     z-index: 10;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9); 
 }
 
 .btn-nav:hover {
-    background: rgba(255, 255, 255, 0.28);
-    transform: translateY(-50%) scale(1.08);
+    background: transparent;
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 1);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .btn-prev { left: 10px; }
@@ -669,6 +665,48 @@ header nav ul li a:hover {
     font-size: 0.88rem;
 }
 
+.poster-library {
+    padding: 62px 0 0;
+}
+
+.poster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.poster-card {
+    position: relative;
+    overflow: hidden;
+    align-self: start;
+    border-radius: 6px;
+    background: #050505;
+}
+
+.poster-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.35s ease;
+}
+
+.poster-card::after {
+    content: "";
+    position: absolute;
+    inset: 45% 0 0;
+    pointer-events: none;
+}
+
+.poster-card:hover img {
+    filter: brightness(1.12);
+}
+
+.poster-caption h3 {
+    margin: 4px 0 0;
+    color: #fff;
+    font-size: 1rem;
+}
+
 @media (max-width: 800px) {
     .featured-work {
         grid-template-columns: 1fr;
@@ -693,6 +731,10 @@ header nav ul li a:hover {
     }
 
     .works-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .poster-grid {
         grid-template-columns: 1fr;
     }
 
